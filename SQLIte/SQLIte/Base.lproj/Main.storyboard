@@ -56,6 +56,15 @@
                                     <action selector="deleteUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rhX-f1-uFa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdh-3I-BfN">
+                                <rect key="frame" x="118" y="509" width="140" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Destroy Database"/>
+                                <connections>
+                                    <action selector="destroyDatabase" destination="BYZ-38-t0r" eventType="touchUpInside" id="8V9-1p-xTw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

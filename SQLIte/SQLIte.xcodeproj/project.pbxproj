@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49500D2727FB733900CD97CB /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 49500D2627FB733900CD97CB /* SQLite */; };
 		49C4DF9727FB6F70007F948B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4DF9627FB6F70007F948B /* AppDelegate.swift */; };
 		49C4DF9927FB6F70007F948B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4DF9827FB6F70007F948B /* SceneDelegate.swift */; };
 		49C4DF9B27FB6F70007F948B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4DF9A27FB6F70007F948B /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49500D2727FB733900CD97CB /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = SQLIte;
+			packageProductDependencies = (
+				49500D2627FB733900CD97CB /* SQLite */,
+			);
 			productName = SQLIte;
 			productReference = 49C4DF9327FB6F6F007F948B /* SQLIte.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 49C4DF8A27FB6F6F007F948B;
+			packageReferences = (
+				49500D2527FB733900CD97CB /* XCRemoteSwiftPackageReference "SQLite" */,
+			);
 			productRefGroup = 49C4DF9427FB6F6F007F948B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -360,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49500D2527FB733900CD97CB /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		49500D2627FB733900CD97CB /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49500D2527FB733900CD97CB /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 49C4DF8B27FB6F6F007F948B /* Project object */;
 }
