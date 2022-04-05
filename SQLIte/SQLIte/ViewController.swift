@@ -10,7 +10,7 @@ import SQLite
 
 class ViewController: UIViewController {
     
-    var database: Connection!
+    var db: Connection!
     
     let usersTable = Table("users")
     
@@ -25,12 +25,13 @@ class ViewController: UIViewController {
         do {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileUrl = documentDirectory.appendingPathComponent("testDB").appendingPathExtension("sqlite3")
-            let database = try Connection(fileUrl.path)
-            self.database = database
+            let db = try Connection(fileUrl.path)
+            self.db = db
         } catch {
             print(error)
         }
         
+        print("db.userVersion - ", db.userVersion)
     }
     
     @IBAction func createTable() {
@@ -40,14 +41,26 @@ class ViewController: UIViewController {
             table.column(id, primaryKey: true)
             table.column(name)
             table.column(email, unique: true)
-            table.column(age)
         }
         
         do {
-            try database.run(createdTable)
-            
+            try db.run(createdTable)
         } catch {
             print(error)
+        }
+        
+        // MARK: - Migration
+        if db.userVersion == 0 {
+            // handle migration
+            // Here we add New Column in table
+            do
+            {
+                try self.db.run(usersTable.addColumn(age, defaultValue: 0))
+                // any other modifications
+                db.userVersion = 1
+            } catch {
+                print(error)
+            }
         }
         
     }
@@ -67,7 +80,7 @@ class ViewController: UIViewController {
             let insert = self.usersTable.insert(self.name <- name, self.email <- email)
             
             do {
-                try self.database.run(insert)
+                try self.db.run(insert)
                 
             } catch {
                 print(error)
@@ -81,7 +94,7 @@ class ViewController: UIViewController {
         print("LIST TAPPED")
         
         do {
-            let users = try database.prepare(usersTable)
+            let users = try db.prepare(usersTable)
             for user in users {
                 print("userId: \(user[self.id]), name: \(user[self.name]), email: \(user[self.email])")
             }
@@ -109,7 +122,7 @@ class ViewController: UIViewController {
             let user = self.usersTable.filter(self.id == userId)
             let updateUser = user.update(self.name <- name, self.email <- email)
             do {
-                try self.database.run(updateUser)
+                try self.db.run(updateUser)
             } catch {
                 print(error)
             }
@@ -132,7 +145,7 @@ class ViewController: UIViewController {
             let user = self.usersTable.filter(self.id == userId)
             let deleteUser = user.delete()
             do {
-                try self.database.run(deleteUser)
+                try self.db.run(deleteUser)
             } catch {
                 print(error)
             }
